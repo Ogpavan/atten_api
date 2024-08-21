@@ -10,18 +10,13 @@ dotenv.config();
 connectDB();
 
 const app = express();
-const allowedOrigins = ['https://atten-frontend.vercel.app'];
 
-// Enable CORS for all routes and methods
+// Enable CORS for all origins
 app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'], // Adjust as needed
-  credentials: true
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  credentials: true, // Allow credentials if needed
 }));
-
-// Enable preflight handling for all routes
-app.options('*', cors());
 
 // Middleware to parse JSON
 app.use(express.json());
